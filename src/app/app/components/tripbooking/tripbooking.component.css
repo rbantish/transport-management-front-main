@@ -1,0 +1,54 @@
+
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  border-radius: 15px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #495057;
+}
+
+/* Map Styling */
+#map {
+  height: 500px;
+}
+
+.map-container {
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+}
+
+:host ::ng-deep .p-dropdown{
+  width: 100%;
+}
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  #map {
+    height: 300px;
+  }
+
+  .card-body h4 {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  #map {
+    height: 250px;
+  }
+
+  .card-body h4 {
+    font-size: 1rem;
+  }
+}
