@@ -111,9 +111,9 @@
                 "input": "public"
               },
               {
-                "glob": "web.config",  
-                "input": "./",           
-                "output": "./"         
+                "glob": "**/*",   
+                "input": "src/web.config",          
+                "output": "./"          
               },
               {
                 "glob": "**/*",
