@@ -27,7 +27,7 @@
                 "input": "public"
               },
               {
-                "glob": "static.json",   
+                "glob": "web.config",   
                 "input": "./",          
                 "output": "./"          
               },
@@ -111,7 +111,7 @@
                 "input": "public"
               },
               {
-                "glob": "static.json",  
+                "glob": "web.config",  
                 "input": "./",           
                 "output": "./"         
               },
