@@ -1,0 +1,77 @@
+<!-- create-vehicle.component.html -->
+<div class="container" style="background-color: rgba(19, 20, 54, 0.788); border-radius: 10px; padding: 50px;">
+    <h2>Create a New Vehicle</h2>
+  
+    <form [formGroup]="vehicleForm" (ngSubmit)="onSubmit()">
+      <!-- Vehicle Type ID -->
+
+        <div class="form-group">
+          <p-dropdown 
+          formControlName="vehicleTypeId"
+          [options]="vehicletTypes" 
+          optionLabel="name" 
+          optionValue="id"
+          placeholder="Select Vehicle Type" />
+        </div>
+      
+  
+      <!-- Trip Price -->
+      <div class="form-group">
+        <label for="tripPrice">Trip Price:</label>
+        <input type="number" formControlName="tripPrice" class="form-control" id="tripPrice" />
+      </div>
+  
+      <!-- Daily Price -->
+      <div class="form-group">
+        <label for="dailyPrice">Daily Price:</label>
+        <input type="number" formControlName="dailyPrice" class="form-control" id="dailyPrice" />
+      </div>
+  
+      <!-- Seats -->
+      <div class="form-group">
+        <label for="seats">Seats:</label>
+        <input type="number" formControlName="seats" class="form-control" id="seats" />
+      </div>
+  
+      <!-- Car Number -->
+      <div class="form-group">
+        <label for="carNumber">Car Number:</label>
+        <input type="text" formControlName="carNumber" class="form-control" id="carNumber" />
+      </div>
+  
+      <!-- Make -->
+      <div class="form-group">
+        <label for="make">Make:</label>
+        <input type="text" formControlName="make" class="form-control" id="make" />
+      </div>
+  
+      <!-- Model -->
+      <div class="form-group">
+        <label for="model">Model:</label>
+        <input type="text" formControlName="model" class="form-control" id="model" />
+      </div>
+  
+      <!-- Year -->
+      <div class="form-group">
+        <label for="year">Year:</label>
+        <input type="text" formControlName="year" class="form-control" id="year" />
+      </div>
+  
+      <!-- Current Location -->
+      <div class="form-group">
+        <label for="currentLocation">Current Location:</label>
+        <input type="text" formControlName="currentLocation" class="form-control" id="currentLocation" />
+      </div>
+  
+      <!-- Image File Upload -->
+      <div class="form-group">
+        <label for="image">Vehicle Image:</label>
+        <input type="file" (change)="onFileSelected($event)" formControlName="image" class="form-control" id="image" />
+      </div>
+      <br>
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <br>
+    </form>
+  </div>
+  
