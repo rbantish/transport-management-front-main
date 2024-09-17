@@ -11,14 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "customWebpackConfig": {
-              "path": "./webpack.config.js"
-            },
             "outputPath": "dist/car-rental-trip-booking",
             "index": "src/index.html",
-            "main": "src/main.ts",
+            "browser": "src/main.ts",
             "polyfills": [
               "zone.js",
               "@angular/localize/init"
@@ -45,7 +42,7 @@
               "src/assets/js/bold-and-dark.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/chart.min.js",
-              "src/assets/js/theme.js",
+               "src/assets/js/theme.js",
               "src/assets/js/bs-init.js"
             ]
           },
@@ -124,7 +121,7 @@
               "src/assets/js/bold-and-dark.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/chart.min.js",
-              "src/assets/js/theme.js",
+               "src/assets/js/theme.js",
               "src/assets/js/bs-init.js"
             ]
           }
