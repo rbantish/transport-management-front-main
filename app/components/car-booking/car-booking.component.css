@@ -1,0 +1,63 @@
+ /* Custom CSS to match the uploaded design */
+ .booking-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+  }
+
+  .booking-form h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .form-group .form-control {
+    height: 45px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .form-group .form-control:focus {
+    box-shadow: none;
+    border-color: #ff6d3b;
+  }
+
+  .btn-search {
+    background-color: #ff6d3b;
+    color: #fff;
+    border: none;
+    height: 45px;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(255, 109, 59, 0.3);
+  }
+
+  .btn-search:hover {
+    background-color: #ff855c;
+  }
+
+  .icon {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #ff6d3b;
+  }
+
+  .blackLabel{
+    color: black;
+    margin-left: 20px;
+  }
+
+  :host ::ng-deep .p-paginator {
+    width: 61vw;
+  }
+
+  @media (max-width: 768px) {
+    .form-row .form-group {
+      margin-bottom: 15px;
+    }
+    :host ::ng-deep .p-paginator {
+      width: 85vw;
+    }
+  }

@@ -1,0 +1,55 @@
+<h2 style="color: brown;">Customer Table</h2>
+<p-table [value]="vehicles" dataKey="id" [tableStyle]="{ 'min-width': '50rem' }" 
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+[showCurrentPageReport]="true"
+[rows]="10"
+scrollHeight="400px" 
+[paginator]="true"
+>
+<ng-template pTemplate="caption">
+    <button class="btn btn-success" (click)="navigateToAddVehicle()">Add Vehicle</button>
+</ng-template>
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Vehicle Type </th>
+            <th>Daily Price</th>
+            <th>Trip Price</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Image</th>
+            <th>Year</th>
+            <th>Car Number</th>
+            <th>Current Location</th>
+            <th>Status</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-vehicle let-editing="editing">
+        <tr>
+            <td>{{ vehicle.vehicleTypeCode }}</td>
+            <td>{{ vehicle.dailyPrice }}</td>
+            <td>{{ vehicle.tripPrice }}</td>
+            <td>{{ vehicle.make }}</td>
+            <td>{{ vehicle.model }}</td>
+            <td><img [src]="imageUrl+vehicle.imagePath"  width="100" height="100"></td>
+            <td>{{ vehicle.year }}</td>
+            <td>{{ vehicle.seats }}</td>
+            <td>{{ vehicle.currentLocation }}</td>
+            <td [pEditableColumn]="vehicle.vehicleStatusCode" pEditableColumnField="vehicleStatusCode">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <p-dropdown 
+                        (onChange)="updateStatus(vehicle.id)"
+                        [options]="statusesOptions" 
+                        [(ngModel)]="selectedStatus"
+                        optionLabel="name" 
+                        optionValue="id"
+                        placeholder="Select Status" />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{ vehicle.vehicleStatusCode }} <span class="pi pi-info-circle"></span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
