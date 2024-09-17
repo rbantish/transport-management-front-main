@@ -42,7 +42,7 @@
               "src/assets/js/bold-and-dark.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/chart.min.js",
-               "src/assets/js/theme.js",
+              "src/assets/js/theme.js",
               "src/assets/js/bs-init.js"
             ]
           },
@@ -78,6 +78,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "host": "0.0.0.0",
+            "port": 4200 
+          },
           "configurations": {
             "production": {
               "buildTarget": "carRentalTripBooking:build:production"
@@ -121,7 +125,7 @@
               "src/assets/js/bold-and-dark.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/chart.min.js",
-               "src/assets/js/theme.js",
+              "src/assets/js/theme.js",
               "src/assets/js/bs-init.js"
             ]
           }
