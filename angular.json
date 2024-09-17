@@ -27,8 +27,8 @@
                 "input": "public"
               },
               {
-                "glob": "**/*",   
-                "input": "src/web.config",          
+                "glob": "src/web.config",   
+                "input": "./",          
                 "output": "./"          
               },
               {
@@ -111,8 +111,8 @@
                 "input": "public"
               },
               {
-                "glob": "**/*",   
-                "input": "src/web.config",          
+                "glob": "src/web.config",   
+                "input": "./",          
                 "output": "./"          
               },
               {
