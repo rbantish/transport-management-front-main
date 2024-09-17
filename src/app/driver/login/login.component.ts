@@ -18,7 +18,7 @@ import { CustomMessageService } from '../../services/custom-message.service';
 })
 export class DriverLoginComponent {
   loginFormGroup: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    phoneNumber: new FormControl('', [Validators.required),
     password: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
   
@@ -26,12 +26,9 @@ export class DriverLoginComponent {
 
   validateLogin(){
     const controls = this.loginFormGroup.controls;
-    if (controls['email'].invalid) {
-      if (controls['email'].errors?.['required']) {
-        this.customMessageService.showError('email is required');
-        return false;
-      } else if (controls['email'].errors?.['email']) {
-        this.customMessageService.showError('Please enter a valid email');
+    if (controls['phoneNumber'].invalid) {
+      if (controls['phoneNumber'].errors?.['required']) {
+        this.customMessageService.showError('phone number is required');
         return false;
       }
     }
@@ -51,7 +48,7 @@ export class DriverLoginComponent {
         return;
       }
 
-      const request = {email: this.loginFormGroup.controls['email'].value, password: this.loginFormGroup.controls['password'].value}
+      const request = {phoneNumber: this.loginFormGroup.controls['phoneNumber'].value, password: this.loginFormGroup.controls['password'].value}
       let response = await this.apiService.login(request as Customer);
       if(response.status == 200){
         let info: UserInfo = response.body as UserInfo;
