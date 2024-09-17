@@ -25,10 +25,6 @@ import { NotAuthorizedComponent } from './components/notauthorise';
 // Customer Section Routes
 const customerRoutes: Routes = [
     {
-        path: "",
-        component: HomepageComponent
-    },
-    {
         path: "login",
         component: LoginComponent
     },
@@ -73,6 +69,10 @@ const customerRoutes: Routes = [
         component: TripbookingComponent,
         canActivate: [authGuard],
         data: { expectedRole: 'customer' }
+    },
+    {
+        path: "",
+        component: HomepageComponent
     }
 ];
 
@@ -91,13 +91,13 @@ const adminRoutes: Routes = [
         component: RentaltripTableComponent
     },
     {
+        path: "drivers",
+        component: DriverTableComponent
+    },
+    {
         path: "",
         component: CustomerTableComponent
     },
-    {
-        path: "drivers",
-        component: DriverTableComponent
-    }
 
 ];
 
@@ -147,10 +147,10 @@ export const routes: Routes = [
         children: customerRoutes
     },
     // Add a not-authorized route to handle access denials
-  {
-    path: 'not-authorized',
-    component: NotAuthorizedComponent
-  },
+    {
+        path: 'not-authorized',
+        component: NotAuthorizedComponent
+    },
     {
         path: "**", // Wildcard route for handling 404 - Page Not Found
         redirectTo: "", // Redirect to homepage or a custom 404 component
