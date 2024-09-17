@@ -11,11 +11,11 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:application",
+          "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/car-rental-trip-booking",
             "index": "src/index.html",
-            "browser": "src/main.ts",
+            "main": "src/main.ts",
             "polyfills": [
               "zone.js",
               "@angular/localize/init"
@@ -25,6 +25,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/images",
+                "output": "/assets/images"
               }
             ],
             "styles": [
@@ -37,7 +42,7 @@
               "src/assets/js/bold-and-dark.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/chart.min.js",
-               "src/assets/js/theme.js",
+              "src/assets/js/theme.js",
               "src/assets/js/bs-init.js"
             ]
           },
@@ -73,6 +78,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "host": "0.0.0.0",
+            "port": 4200 
+          },
           "configurations": {
             "production": {
               "buildTarget": "carRentalTripBooking:build:production"
@@ -99,6 +108,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/images",
+                "output": "/assets/images"
               }
             ],
             "styles": [
@@ -111,7 +125,7 @@
               "src/assets/js/bold-and-dark.js",
               "src/assets/js/bootstrap.min.js",
               "src/assets/js/chart.min.js",
-               "src/assets/js/theme.js",
+              "src/assets/js/theme.js",
               "src/assets/js/bs-init.js"
             ]
           }
