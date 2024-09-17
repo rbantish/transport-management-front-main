@@ -8,14 +8,14 @@ import { MessageService } from 'primeng/api';
 import { CookieCustomService } from './services/cookie.service';
 import { CookieService } from 'ngx-cookie-service';
 import { CoreModule } from './modules/core.modules';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { APP_BASE_HREF } from '@angular/common';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
      provideRouter(routes), 
      provideAnimationsAsync(),
      provideHttpClient(), 
-     {provide: LocationStrategy, useClass: HashLocationStrategy},
+     { provide: APP_BASE_HREF, useValue: '/' },
      MessageService, 
      CookieCustomService, 
      CoreModule,
