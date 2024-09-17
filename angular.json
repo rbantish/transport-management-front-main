@@ -27,6 +27,11 @@
                 "input": "public"
               },
               {
+                "glob": "static.json",   
+                "input": "./",          
+                "output": "./"          
+              },
+              {
                 "glob": "**/*",
                 "input": "src/images",
                 "output": "/assets/images"
@@ -104,6 +109,11 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "static.json",  
+                "input": "./",           
+                "output": "./"         
               },
               {
                 "glob": "**/*",
