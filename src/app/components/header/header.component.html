@@ -14,7 +14,7 @@
                 <li class="nav-item"><a class="nav-link" *ngIf="!loggedIn" href="/driver/login">Driver Section</a></li>
                 <li class="nav-item"><a class="nav-link" href="/contact">Contacts</a></li>
             </ul>
-            <div class="d-flex ms-auto align-items-center" *ngIf="loggedIn && (userType =='customer' || userType =='')"> <!--only if user is login and customer type -->
+            <div class="d-flex ms-auto align-items-center" *ngIf="loggedIn && userType =='customer'"> <!--only if user is login and customer type -->
                 <a class="nav-link" href="/cart">
                     <i class="pi pi-shopping-cart" style="font-size: 1.5rem"></i>
                 </a>
@@ -24,6 +24,10 @@
                 <a class="nav-link" href="/profile">
                     <i class="pi pi-user" style="font-size: 1.5rem"></i>
                 </a>
+                <a class="btn btn-primary shadow" *ngIf="!loggedIn" role="button" href="login">Login</a>
+            </div>
+
+            <div class="d-flex ms-auto align-items-center" *ngIf="!loggedIn"> <!--only if user is login and customer type -->
                 <a class="btn btn-primary shadow" *ngIf="!loggedIn" role="button" href="login">Login</a>
             </div>
         </div>
