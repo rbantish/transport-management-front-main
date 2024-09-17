@@ -1,0 +1,36 @@
+<section class="py-5">
+    <div class="container py-5">
+        
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6 col-xl-4">
+                
+                <div class="card">
+                    <p class="fw-bold text-success mb-2 text-center d-flex flex-column align-items-center">Register</p>
+                    <h2 class="fw-bold text-center d-flex flex-column align-items-center">Welcome</h2>
+                    <div class="card-body text-center d-flex flex-column align-items-center">
+                        <form [formGroup]="registrationForm">
+                            <div class="mb-3">
+                                <div class="dropdown">
+                                    <p-dropdown 
+                                    formControlName="accountType"
+                                    [options]="customerOptions" 
+                                    optionLabel="name" 
+                                    optionValue="value"
+                                    placeholder="Select an account type" />
+                                </div>
+                            </div>
+                            <div class="mb-3"><input formControlName="name" class="form-control" type="text" placeholder="Name"></div>
+                            <div class="mb-3"><input formControlName="phoneNumber" class="form-control" type="tel" minlength="4" maxlength="8" placeholder="Telephone Number"></div>
+                            <div class="mb-3"><textarea formControlName="address" class="form-control" placeholder="Address" style="height: 60px;"></textarea></div> 
+                            <div class="mb-3"><input formControlName="email" class="form-control" type="email"  placeholder="Email" ></div>
+                            <div class="mb-3"><input formControlName="password" class="form-control" type="password" placeholder="Password" minlength="4"></div>
+                            <div class="mb-3"><input formControlName="confirmPassword" class="form-control" type="password" placeholder="Confirm Password" minlength="4" ></div>
+                            <div class="mb-3"><button class="btn btn-primary shadow d-block w-100" (click)="onSubmit()" type="submit">Register</button></div>
+                        </form>
+                        <p class="text-muted">Already have an account?&nbsp;<a href="/login">Log in</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
