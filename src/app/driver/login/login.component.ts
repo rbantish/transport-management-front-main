@@ -18,7 +18,7 @@ import { CustomMessageService } from '../../services/custom-message.service';
 })
 export class DriverLoginComponent {
   loginFormGroup: FormGroup = new FormGroup({
-    phoneNumber: new FormControl('', [Validators.required),
+    phoneNumber: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required, Validators.minLength(4)])
   });
   
