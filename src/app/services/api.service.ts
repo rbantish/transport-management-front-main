@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Customer, CustomerStatusResponse } from '../models/customer';
+import { Customer, CustomerStatusResponse, UserInfo } from '../models/customer';
 import { environment } from '../../environments/environment.development';
 import { firstValueFrom } from 'rxjs';
 import { Item, Vehicle, VehicleRequest, VehicleResponse } from '../models/vehicle';
@@ -68,7 +68,7 @@ export class ApiService {
     return firstValueFrom(this.http.get<Array<VehicleResponse>>(`${this.url}/vehicle/all`));
   }
   login(customer: Customer) {
-    return firstValueFrom(this.http.post(`${this.url}/customer/login`, customer,{ observe: 'response' }));
+    return firstValueFrom(this.http.post<string | UserInfo>(`${this.url}/customer/login`, customer,{ observe: 'response' }));
   }
 
   retrieveAllVehicleType() {

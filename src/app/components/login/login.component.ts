@@ -52,6 +52,7 @@ export class LoginComponent {
 
         const request = {email: this.loginFormGroup.controls['email'].value, password: this.loginFormGroup.controls['password'].value}
         let response = await this.apiService.login(request as Customer);
+        console.log(response)
         if(response.status == 200){
           let info: UserInfo = response.body as UserInfo;
           this.authService.setUserInfo(info);
