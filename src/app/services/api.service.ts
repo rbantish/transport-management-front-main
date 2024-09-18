@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Customer, CustomerStatusResponse, UserInfo } from '../models/customer';
-import { environment } from '../../environments/environment.development';
+import { environment } from '../../environments/environment';
 import { firstValueFrom } from 'rxjs';
 import { Item, Vehicle, VehicleRequest, VehicleResponse } from '../models/vehicle';
 import { BookingInfos, PaymentCompleteRequest, RentalRequest, TripRental } from '../models/rental';

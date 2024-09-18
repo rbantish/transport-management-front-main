@@ -24,7 +24,7 @@ export class AuthService {
     document.cookie = `userRole=${user.type}; ${expires}; path=/`; // Role is stored in 'type'
     document.cookie = `userName=${user.name}; ${expires}; path=/`;
     if(user.address){
-      document.cookie = `userAdddress=${user.address}; ${expires}; path=/`;
+      document.cookie = `userAddress=${user.address}; ${expires}; path=/`;
     }
     
     if(user.phoneNumber){

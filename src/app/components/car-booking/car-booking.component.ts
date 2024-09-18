@@ -5,7 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { PrimengLib } from '../../modules/primenglibs.module';
 import { CoreModule } from '../../modules/core.modules';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-car-booking',

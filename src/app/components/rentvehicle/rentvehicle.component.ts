@@ -7,8 +7,10 @@ import { VehicleResponse } from '../../models/vehicle';
 import { CustomMessageService } from '../../services/custom-message.service';
 import { RentalRequest } from '../../models/rental';
 import { CookieCustomService } from '../../services/cookie.service';
-import { Customer, UserInfo } from '../../models/customer';
+import { Customer,  UserInfo } from '../../models/customer';
 import {PaymentResponse} from '../../models/paymentMethod'
+import { environment } from '../../../environments/environment';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-rentvehicle',
   standalone: true,
@@ -17,20 +19,22 @@ import {PaymentResponse} from '../../models/paymentMethod'
   styleUrl: './rentvehicle.component.css'
 })
 export class RentvehicleComponent implements OnInit {
+  imageUrl: string = environment.serverUrl;
   selectedDates: Date[] = [];
   bookedDates: Date[] = [];
   selectedPaymentId: number = 0;
   paymentMethods: PaymentResponse[] = [];
   paymentMethodOptions: Array<{name:string, value: number}> = [];
-  customer: UserInfo | undefined;
+  customer: UserInfo | null = null;
   display: boolean = false;
   drivingLicense: string = '';
   today: Date = new Date();
   vehicle: VehicleResponse | undefined;
-  constructor(private apiService: ApiService, private route: Router, private activatedRoute: ActivatedRoute, private messageService: CustomMessageService, private customCookieService: CookieCustomService){}
+  constructor(private apiService: ApiService, private route: Router, private activatedRoute: ActivatedRoute, private messageService: CustomMessageService, private authService: AuthService){}
 
   async ngOnInit() {
     await this.retrieveInfos();
+    
   }
 
   async retrieveInfos(){
@@ -38,11 +42,15 @@ export class RentvehicleComponent implements OnInit {
       let vehicleId = this.activatedRoute.snapshot.paramMap.get('id');
       this.bookedDates = (await this.apiService.getCalendarForThisVehicle(vehicleId!)).map(x => new Date(x.date));
       this.vehicle = await this.apiService.getVehicleById(vehicleId!);
-      this.customer = this.customCookieService.getCookie();
+      this.customer = this.authService.getUserInfo();
+      console.log(this.customer)
       this.paymentMethods = await this.apiService.getPaymentMethods();
       this.paymentMethods.map(x => {
         this.paymentMethodOptions.push({name: x.type, value:x.id});
       });
+      if(this.customer?.driverLicenseNumber == null){
+        this.showDialog();
+      }
     }catch(error){
       this.messageService.showError("Error while fetching information on rent page")
     }
@@ -53,27 +61,26 @@ export class RentvehicleComponent implements OnInit {
   }
 
   async submit() {
-    if (this.drivingLicense) {
+    
       try {
         let customer = {
           id: this.customer?.id,
           driverLicenseNumber: this.drivingLicense
         };
+        console.log(customer,'in it')
         let response = await this.apiService.modifyCustomer(customer as Customer)
         if(response.status == 200){
           this.messageService.showSuccess("Profile Updated");
           if(this.customer){
             this.customer.driverLicenseNumber = this.drivingLicense;
-            this.customCookieService.setCookie(this.customer!);
+            this.authService.setUserInfo(this.customer);
           }      
         }
         this.display = false; 
       } catch (error) {
         this.messageService.showError("Error occured");
       }  
-    } else {
-     this.messageService.showError("Enter your driving license");
-    }
+    
   }
 
   getNumberOfDays(startDate: Date, endDate: Date): number {
@@ -86,9 +93,6 @@ export class RentvehicleComponent implements OnInit {
   async bookVehicle(){
     try {
 
-      if(this.customer?.driverLicenseNumber == null){
-        this.showDialog();
-      }
       
       if(this.drivingLicense  == ""){
         return;
