@@ -9,7 +9,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   const expectedRole = route.data['expectedRole'];
   if (!authService.isLoggedIn()) {
     // Redirect to login page if the user is not logged in
-    console.log(expectedRole)
     if(expectedRole == "customer"){ //if try to access features that requires login for customer
       router.navigate(['login']);
       return false;

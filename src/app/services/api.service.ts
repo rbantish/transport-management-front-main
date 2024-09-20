@@ -71,6 +71,10 @@ export class ApiService {
     return firstValueFrom(this.http.post<string | UserInfo>(`${this.url}/customer/login`, customer,{ observe: 'response' }));
   }
 
+  loginCustomer(customer: Customer) {
+    return firstValueFrom(this.http.post<string | UserInfo>(`${this.url}/driver/login`, customer,{ observe: 'response' }));
+  }
+
   retrieveAllVehicleType() {
     return firstValueFrom(this.http.get<Array<VehicleType>>(`${this.url}/vehicle/vehicletype/all`));
   }

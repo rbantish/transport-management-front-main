@@ -30,6 +30,10 @@ export class AuthService {
     if(user.phoneNumber){
       document.cookie = `userPhone=${user.phoneNumber}; ${expires}; path=/`;
     }
+    if(user.driverLicenseNumber){
+      document.cookie = `userLicense=${user.driverLicenseNumber}; ${expires}; path=/`;
+    }
+
     console.log(user.email, user)
     if(user.email){
       document.cookie = `userEmail=${user.email}; ${expires}; path=/`;
@@ -55,14 +59,15 @@ export class AuthService {
     const address = this.getCookie('userAddress');
     const phone = this.getCookie('userPhone');
     const email = this.getCookie('userEmail');
-
+    const license = this.getCookie('userLicense');
     let userInfo: UserInfo = {
       id: id ? Number.parseInt(id) : 0,
       name: name ? name : "",
       email: email != null ? email : "",
       phoneNumber: phone ? Number.parseInt(phone) : 0,
       address: address ? address : "",
-      type: role ? role : ""
+      type: role ? role : "",
+      driverLicenseNumber: license? license : ""
     };
     if(id == null){
       return null;

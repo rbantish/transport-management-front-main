@@ -4,7 +4,6 @@ import { PrimengLib } from '../../modules/primenglibs.module';
 import { Router } from '@angular/router';
 import { StatusResponse, StatusRequest } from '../../models/status';
 import { ApiService } from '../../services/api.service';
-import { CookieCustomService } from '../../services/cookie.service';
 import { CustomMessageService } from '../../services/custom-message.service';
 import { TripRental } from '../../models/rental';
 import { TriAddDriverRequest } from '../../models/trip';

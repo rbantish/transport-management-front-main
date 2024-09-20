@@ -43,13 +43,14 @@ export class RentvehicleComponent implements OnInit {
       this.bookedDates = (await this.apiService.getCalendarForThisVehicle(vehicleId!)).map(x => new Date(x.date));
       this.vehicle = await this.apiService.getVehicleById(vehicleId!);
       this.customer = this.authService.getUserInfo();
-      console.log(this.customer)
       this.paymentMethods = await this.apiService.getPaymentMethods();
       this.paymentMethods.map(x => {
         this.paymentMethodOptions.push({name: x.type, value:x.id});
       });
       if(this.customer?.driverLicenseNumber == null){
         this.showDialog();
+      }else{
+        this.drivingLicense = this.customer.driverLicenseNumber;
       }
     }catch(error){
       this.messageService.showError("Error while fetching information on rent page")
@@ -67,7 +68,6 @@ export class RentvehicleComponent implements OnInit {
           id: this.customer?.id,
           driverLicenseNumber: this.drivingLicense
         };
-        console.log(customer,'in it')
         let response = await this.apiService.modifyCustomer(customer as Customer)
         if(response.status == 200){
           this.messageService.showSuccess("Profile Updated");
@@ -91,20 +91,13 @@ export class RentvehicleComponent implements OnInit {
   }
   
   async bookVehicle(){
-    try {
-
-      
-      if(this.drivingLicense  == ""){
-        return;
-      }
-      
+    try {     
       let vehicleId: number =  Number.parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
       if(this.selectedPaymentId == 0){
         this.messageService.showError("Select a Payment Type");
         return;
       }
 
-      
       let request: RentalRequest = {
         customerId: this.customer?.id!,
         vehicleId: vehicleId,

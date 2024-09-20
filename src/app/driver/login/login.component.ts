@@ -49,7 +49,7 @@ export class DriverLoginComponent {
       }
 
       const request = {phoneNumber: this.loginFormGroup.controls['phoneNumber'].value, password: this.loginFormGroup.controls['password'].value}
-      let response = await this.apiService.login(request as Customer);
+      let response = await this.apiService.loginCustomer(request as Customer);
       if(response.status == 200){
         let info: UserInfo = response.body as UserInfo;
         this.authService.setUserInfo(info);

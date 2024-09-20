@@ -5,10 +5,10 @@
 html, body { height: 100%;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; overflow-x: hidden }
 
-.leaflet-container .leaflet-tile,
+/* .leaflet-container .leaflet-tile,
 .leaflet-control-layers-toggle {
   background-image: url('/assets/leaflet/marker-icon.png');
-}
+} */
 /* Order */
 @layer reset, primeng;
 

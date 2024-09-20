@@ -35,7 +35,7 @@ export interface Rental {
     customerId: number;
     paymentId: number;
     customerName: string;
-    driverId?: number; // Only for trips
+    driverName?: string; // Only for trips
     cost: number;
     startDate: Date;
     endDate?: Date; // Only for rentals

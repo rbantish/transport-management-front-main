@@ -56,7 +56,7 @@ const customerRoutes: Routes = [
         path: "profile",
         component: ProfileComponent,
         canActivate: [authGuard],
-        data: { expectedRole: 'customer' }
+        data: { expectedRole: 'customer' } 
     },
     {
         path: "cart",
