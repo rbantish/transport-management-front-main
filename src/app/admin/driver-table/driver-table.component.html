@@ -1,10 +1,9 @@
 <h2 style="color: brown;">Driver Table</h2>
-<p-table [value]="drivers" dataKey="driverId" scrollHeight="400px" [tableStyle]="{ 'min-width': '50rem' }"
+<p-table [value]="drivers" dataKey="driverId" scrollable="true" [tableStyle]="{ 'min-width': '50rem', 'min-height': '50vh' }"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
 [showCurrentPageReport]="true"
 [rows]="10"
 [paginator]="true"
-[globalFilterFields]="['driverName']"
 >
     <ng-template pTemplate="header">
         <tr>

@@ -61,8 +61,8 @@ export class LoginComponent {
           this.customMessageService.showError(response.body as string)
         }
         return;
-      } catch (error) {
-        this.customMessageService.showError('Error occured during logging');
+      } catch (error: any) {
+        this.customMessageService.showError(error.error);
         return;
       }
     }

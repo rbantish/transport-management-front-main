@@ -20,12 +20,14 @@ export class AdminComponent  implements OnInit{
   driversCount: number = 0;
   vehiclesCount: number = 0;
   moneyThisMonth: number = 0;
+  tripsAndRental: number = 0;
   constructor(private apiService: ApiService, private activatedRoute: ActivatedRoute, private messageService: CustomMessageService, private authService: AuthService){}
   
   async ngOnInit() {
     this.driversCount = await this.apiService.retrieveDriversCount();
     this.vehiclesCount = await this.apiService.retrieveVehiclesCount();
     this.moneyThisMonth = await this.apiService.retrieveMoneyThisMonth();
+    this.tripsAndRental = await this.apiService.retrieveTripsAndRentalCount();
   }
 
 }

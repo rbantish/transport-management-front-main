@@ -42,7 +42,7 @@
     <!-- Vehicle Cards -->
     <div class="row gy-4">
       <ng-container *ngFor="let vehicle of vehicles">
-        <div class="col-md-6 col-lg-4">
+        <div class="col-md-6 col-lg-4" *ngIf="vehicle.vehicleStatusCode != 'Inactive'">
           <div class="card">
             <img style="height: 300px; object-fit:contain;" [src]="imageUrl+vehicle.imagePath" class="card-img-top" alt="{{vehicle.make}}" (error)="setDefaultImage($event)">
             <div class="card-body">

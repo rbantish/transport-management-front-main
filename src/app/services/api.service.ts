@@ -23,6 +23,10 @@ export class ApiService {
     return firstValueFrom(this.http.get<number>(`${this.url}/info/drivers/count`));
   }
 
+  retrieveTripsAndRentalCount(): number | PromiseLike<number> {
+    return firstValueFrom(this.http.get<number>(`${this.url}/info/tripsrental/count`));
+  }
+
   retrieveVehiclesCount(): number | PromiseLike<number> {
     return firstValueFrom(this.http.get<number>(`${this.url}/info/vehicles/count`));
   }

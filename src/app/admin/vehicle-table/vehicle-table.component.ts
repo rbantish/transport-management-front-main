@@ -30,6 +30,10 @@ export class VehicleTableComponent implements OnInit{
     await this.getAllVehicles();
   }
 
+  setDefaultImage(event: any) {
+    event.target.src = 'img/default.png'; // Path to default image
+  }
+  
   async getAllVehicles(){
     this.statuses = await this.apiService.retrieveAllStatuses();
     this.statuses.map(x => {

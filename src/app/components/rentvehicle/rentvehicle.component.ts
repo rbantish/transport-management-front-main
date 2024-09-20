@@ -80,6 +80,10 @@ export class RentvehicleComponent implements OnInit {
     
   }
 
+  setDefaultImage(event: any) {
+    event.target.src = 'img/default.png'; // Path to default image
+  }
+
   getNumberOfDays(startDate: Date, endDate: Date): number {
     const start = new Date(startDate);
     const end = new Date(endDate);

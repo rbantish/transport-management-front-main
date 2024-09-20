@@ -40,7 +40,7 @@ export class CarBookingComponent implements OnInit {
   }
 
   setDefaultImage(event: any) {
-    event.target.src = 'img/default.png'; // Path to your default image
+    event.target.src = 'img/default.png'; // Path to default image
   }
 
   rentVehicle(vehicleId: number){

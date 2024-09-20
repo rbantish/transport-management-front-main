@@ -30,7 +30,9 @@ scrollHeight="400px"
             <td>{{ vehicle.tripPrice }}</td>
             <td>{{ vehicle.make }}</td>
             <td>{{ vehicle.model }}</td>
-            <td><img [src]="imageUrl+vehicle.imagePath"  width="100" height="100"></td>
+            <td>
+                <img [src]="imageUrl+vehicle.imagePath" style="object-fit: contain;" width="100" height="100" alt="{{vehicle.make}}" (error)="setDefaultImage($event)">
+            </td>
             <td>{{ vehicle.year }}</td>
             <td>{{ vehicle.seats }}</td>
             <td>{{ vehicle.currentLocation }}</td>
