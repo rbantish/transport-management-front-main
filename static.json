@@ -1,7 +1,0 @@
-{
-    "root": "dist/car-rental-trip-booking",  
-    "clean_urls": true,
-    "routes": {
-      "/**": "index.html" 
-    }
-}

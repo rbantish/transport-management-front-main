@@ -15,11 +15,11 @@ export const appConfig: ApplicationConfig = {
      provideRouter(routes), 
      provideAnimationsAsync(),
      provideHttpClient(), 
-     { provide: APP_BASE_HREF, useValue: '/' },
+
      MessageService, 
      CookieCustomService, 
      CoreModule,
      CookieService
     ]
-
+    // { provide: APP_BASE_HREF, useValue: '/' },
 };

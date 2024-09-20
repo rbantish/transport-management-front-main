@@ -25,16 +25,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "static.json",
-                "input": "./",
-                "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/images",
-                "output": "/assets/images"
               }
             ],
             "styles": [
@@ -109,16 +99,6 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              },
-              {
-                "glob": "static.json",
-                "input": "./",
-                "output": "/"
-              },
-              {
-                "glob": "**/*",
-                "input": "src/images",
-                "output": "/assets/images"
               }
             ],
             "styles": [
