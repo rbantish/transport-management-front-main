@@ -84,34 +84,43 @@ calculateCost(){
 }
 
 ngAfterViewInit(): void {
-    this.map = L.map('map', {
-      center: L.latLng(-20.1609, 57.5012),
-      zoom: 14,
-    });
-    
-     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      tileSize:512,
-      minZoom:1,
-      zoomOffset:-1,
-      crossOrigin:true,
-    }).addTo(this.map);
+  // Define custom icon
+  const customIcon = L.icon({
+    iconUrl: 'leaflet/marker-icon.png', // Path to your custom icon
+    iconSize: [25, 41], // Size of the icon
+    iconAnchor: [12, 41], // Point of the icon which will correspond to marker's location
+    popupAnchor: [1, -34], // Point from which the popup should open relative to the iconAnchor
+    shadowUrl: 'leaflet/marker-shadow.png', // Path to the shadow image (if any)
+    shadowSize: [41, 41] // Size of the shadow
+  });
 
-    // Add click event to the map
-    this.map.on('click', (e: any) => {
-      const latlng = e.latlng;
-      this.addPickupPoint(latlng);
-    });
+  // Initialize the map
+  this.map = L.map('map', {
+    center: L.latLng(-20.1609, 57.5012),
+    zoom: 14,
+  });
+
+  // Add tile layer
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    tileSize: 512,
+    minZoom: 1,
+    zoomOffset: -1,
+    crossOrigin: true,
+  }).addTo(this.map);
+
+  // Add click event to the map
+  this.map.on('click', (e: any) => {
+    const latlng = e.latlng;
+    this.addPickupPoint(latlng, customIcon); // Pass the custom icon
+  });
 }
 
-addPickupPoint(latlng: L.LatLng) {
-  L.marker([latlng.lat, latlng.lng]).addTo(this.map)
-      .bindPopup(`Pickup Point ${this.pickupPoints.length + 1}`)
-      .openPopup();
-
-  this.pickupPoints.push(latlng);
-  this.startLocation = this.pickupPoints[0];
-  this.endLocation = latlng;  
+private addPickupPoint(latlng: L.LatLng, icon: L.Icon): void {
+  // Create a marker with the custom icon at the clicked location
+  L.marker(latlng, { icon: icon }).addTo(this.map)
+    .bindPopup('Pickup Point')
+    .openPopup();
 }
 
 reset() {

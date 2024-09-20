@@ -1,6 +1,6 @@
 export const environment = {
-    serverUrl: "https://transport-management-back.onrender.com/",
-    apiUrl: "https://transport-management-back.onrender.com/api",
+    serverUrl: "http://localhost:30001",
+    apiUrl: "http://localhost:30001/api",
     env: "prod"
 };
 
