@@ -44,14 +44,14 @@
       <ng-container *ngFor="let vehicle of vehicles">
         <div class="col-md-6 col-lg-4">
           <div class="card">
-            <img [src]="imageUrl+vehicle.imagePath" class="card-img-top" alt="{{vehicle.make}}">
+            <img style="height: 300px; object-fit:contain;" [src]="imageUrl+vehicle.imagePath" class="card-img-top" alt="{{vehicle.make}}" (error)="setDefaultImage($event)">
             <div class="card-body">
               <div class="text-center">
                 <h4 class="card-title">{{vehicle.model}} - {{vehicle.make}} - {{vehicle.year}}</h4>
                 <p class="card-text">Location: {{vehicle.currentLocation}}</p>
                 <p class="card-text">Daily Price: Rs {{vehicle.dailyPrice}}</p>
                 <p class="card-text">Seats Number: {{vehicle.seats}}</p>
-                <p class="card-text">Status: {{vehicle.rentalStatusCode}}</p>
+                <p class="card-text">Status: {{vehicle.vehicleStatusCode}}</p>
                 <button class="btn btn-primary" style="margin-right: 10px; background-color: aquamarine;" (click)="bookVehicle(vehicle.id)">Rent car</button>
                 <button class="btn btn-primary" (click)="rentVehicle(vehicle.id)">Book a trip</button>
               </div>

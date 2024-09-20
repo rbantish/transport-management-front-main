@@ -34,7 +34,11 @@ export class RentvehicleComponent implements OnInit {
 
   async ngOnInit() {
     await this.retrieveInfos();
-    
+    if(this.customer?.driverLicenseNumber == null || this.customer?.driverLicenseNumber == ""){
+      this.display = true;
+    }else{
+      this.drivingLicense = this.customer.driverLicenseNumber;
+    }
   }
 
   async retrieveInfos(){
@@ -47,19 +51,12 @@ export class RentvehicleComponent implements OnInit {
       this.paymentMethods.map(x => {
         this.paymentMethodOptions.push({name: x.type, value:x.id});
       });
-      if(this.customer?.driverLicenseNumber == null){
-        this.showDialog();
-      }else{
-        this.drivingLicense = this.customer.driverLicenseNumber;
-      }
+      
     }catch(error){
       this.messageService.showError("Error while fetching information on rent page")
     }
   }
 
-  showDialog() {
-    this.display = true;
-  }
 
   async submit() {
     
@@ -92,6 +89,12 @@ export class RentvehicleComponent implements OnInit {
   
   async bookVehicle(){
     try {     
+      if(this.customer?.driverLicenseNumber == ""){
+        this.messageService.showError("You need to have a license!!")
+        this.display = true;
+        return;
+      }
+
       let vehicleId: number =  Number.parseInt(this.activatedRoute.snapshot.paramMap.get('id')!);
       if(this.selectedPaymentId == 0){
         this.messageService.showError("Select a Payment Type");

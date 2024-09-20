@@ -37,8 +37,8 @@
       <div class="card bg-dark text-white shadow-sm border-0">
         <div class="card-body">
           <h4>Price Information</h4>
-          <p>Price per KM: {{vehicle?.tripPrice}}</p>
-          <p>Total Price: <strong id="total-price">{{calculateCost()| number:'1.2-2' | currency: 'Rs '}}</strong></p>
+          <p>Price per Meter: {{vehicle?.tripPrice}}</p>
+          <p>Total Price: <strong id="total-price">{{calculateCost() | currency: 'Rs '}}</strong></p>
           
           <h4>Locations</h4>
           <p>Pickup Location: <strong id="pickup-location">{{startLocation}}</strong></p>

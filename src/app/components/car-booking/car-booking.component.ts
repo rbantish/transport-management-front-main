@@ -39,6 +39,10 @@ export class CarBookingComponent implements OnInit {
     this.router.navigate(["rent",vehicleId]);
   }
 
+  setDefaultImage(event: any) {
+    event.target.src = 'img/default.png'; // Path to your default image
+  }
+
   rentVehicle(vehicleId: number){
     this.router.navigate(["trip",vehicleId]);
   }

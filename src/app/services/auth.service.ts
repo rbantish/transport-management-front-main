@@ -33,8 +33,7 @@ export class AuthService {
     if(user.driverLicenseNumber){
       document.cookie = `userLicense=${user.driverLicenseNumber}; ${expires}; path=/`;
     }
-
-    console.log(user.email, user)
+    
     if(user.email){
       document.cookie = `userEmail=${user.email}; ${expires}; path=/`;
     } 
@@ -97,6 +96,7 @@ export class AuthService {
     document.cookie = 'userAddress=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'userPhone=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'userEmail=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie = 'userLicense=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     this.router.navigate(['/login']);
     // Emit logout status
     this.loggedInSubject.next(false);

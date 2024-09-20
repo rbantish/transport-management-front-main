@@ -42,7 +42,7 @@
     <ng-template pTemplate="body" let-entity let-editing="editing">
         <tr [pSelectableRow]="entity">
             <td>{{ entity.tripId }}</td>
-            <td>{{ entity.tripDate }}</td>
+            <td>{{ entity.tripDate | date: "dd/MM/yyyy HH:mm" }}</td>
             <td>{{ entity.carNumber }}</td>
         </tr>
     </ng-template>

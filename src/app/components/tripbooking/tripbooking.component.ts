@@ -57,9 +57,15 @@ async ngOnInit() {
 
  // Event handler when a date is selected
  onDateSelect(event: any) {
-  if (this.selectedDates && this.selectedDates.length === 2) {
+  if (this.selectedDates && this.selectedDates.length >= 1) {
     const startDate = this.selectedDates[0];
-    const endDate = this.selectedDates[1];
+    let endDate = this.selectedDates[1];
+
+    // If only one date is selected, set endDate as the same as startDate
+    if (!endDate) {
+      endDate = startDate;
+      this.selectedDates[1] = startDate;
+    }
 
     // Check if the selected range includes any booked dates
     if (this.isRangeIncludesBookedDates(startDate, endDate)) {
@@ -69,6 +75,7 @@ async ngOnInit() {
     }
   }
 }
+
 
 // Function to check if any of the booked dates fall within the selected range
 isRangeIncludesBookedDates(startDate: Date, endDate: Date): boolean {
@@ -119,8 +126,10 @@ ngAfterViewInit(): void {
 private addPickupPoint(latlng: L.LatLng, icon: L.Icon): void {
   // Create a marker with the custom icon at the clicked location
   L.marker(latlng, { icon: icon }).addTo(this.map)
-    .bindPopup('Pickup Point')
     .openPopup();
+    this.pickupPoints.push(latlng);
+    this.startLocation = this.pickupPoints[0];
+    this.endLocation = latlng;  
 }
 
 reset() {
@@ -177,13 +186,13 @@ async submitBooking(){
   // Function to calculate the distance between the first and the last point
 calculateDistance() {
     if (this.pickupPoints.length < 1) {
-      this.messageService.showError('You need at least two pickup points.');
+      this.messageService.showError('You need at least 2 pickup points.');
       return;
     }
 
     const firstPoint = this.pickupPoints[0];
     const lastPoint = this.pickupPoints[this.pickupPoints.length - 1];
     
-    this.distance = (this.map.distance(firstPoint, lastPoint) / 1000); // distance in kilometers
+    this.distance = (this.map.distance(firstPoint, lastPoint)); // distance in meters
   }
 }
