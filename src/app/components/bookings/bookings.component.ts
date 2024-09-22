@@ -25,7 +25,7 @@ export class BookingsComponent implements OnInit{
     this.customer = this.authService.getUserInfo();
       if(this.customer){
         let bookings = await this.apiService.getBookings(this.customer?.id);
-        this.bookings = bookings.sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
+        this.bookings = bookings.sort((a, b) => b.rentalId - a.rentalId);
       }
   }
  

@@ -57,15 +57,9 @@ async ngOnInit() {
 
  // Event handler when a date is selected
  onDateSelect(event: any) {
-  if (this.selectedDates && this.selectedDates.length >= 1) {
+  if (this.selectedDates && this.selectedDates.length === 2) {
     const startDate = this.selectedDates[0];
-    let endDate = this.selectedDates[1];
-
-    // If only one date is selected, set endDate as the same as startDate
-    if (!endDate) {
-      endDate = startDate;
-      this.selectedDates[1] = startDate;
-    }
+    const endDate = this.selectedDates[1];
 
     // Check if the selected range includes any booked dates
     if (this.isRangeIncludesBookedDates(startDate, endDate)) {
@@ -74,7 +68,9 @@ async ngOnInit() {
       this.messageService.showError('Your selected range includes unavailable dates. Please choose a valid range.');
     }
   }
+
 }
+
 
 
 // Function to check if any of the booked dates fall within the selected range
@@ -143,6 +139,9 @@ reset() {
   const defaultCenter = [-20.1609, 57.5012];  
   const defaultZoom = 13;               
   this.map.setView(defaultCenter, defaultZoom);
+
+  //reset dates
+  this.selectedDates = [];
 }
 
 async submitBooking(){
@@ -157,16 +156,24 @@ async submitBooking(){
         this.messageService.showError("No payment Method selected!");
         return;
       }
+
+      let dates: Array<Date> = [];
+      if(this.selectedDates[1] != null){
+        dates = this.getDatesInRange(this.selectedDates[0],this.selectedDates[1]);
+      }else{
+        dates.push(this.selectedDates[0]);
+      }
+
   
       let request: TripRequest = {
         vehicleId: this.vehicleId,
         paymentMethodId: this.selectedPaymentId,
         customerId: this.customerId,
-        tripDate: this.selectedDates,
+        tripDate: dates,
         tripCost: this.totalCost,
         points: this.pickupPoints.map(x => x.toString())
       }
-  
+
       let response = await this.apiService.addTrip(request);
       if(response.status == 200){
         this.messageService.showSuccess(response.body as string);
@@ -182,6 +189,20 @@ async submitBooking(){
     this.messageService.showError("Error occured")
   }
 }
+
+//generates dates between a start and end dates.
+getDatesInRange(startDate: Date, endDate: Date): Date[] {
+  const dateArray: Date[] = [];
+  const currentDate = new Date(startDate.getTime()); 
+
+  while (currentDate <= endDate) {
+    dateArray.push(new Date(currentDate)); 
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return dateArray;
+}
+
 
   // Function to calculate the distance between the first and the last point
 calculateDistance() {

@@ -18,7 +18,7 @@ import { AuthService } from '../services/auth.service';
   styleUrl: './driver.component.css'
 })
 export class DriverComponent {
-  private map: L.Map | undefined;
+  private map: any;
   latlngArray: string[] = [];
   driverId: number = 3;
   trips: Array<TripWithVehicle> = [];
@@ -48,6 +48,7 @@ export class DriverComponent {
   }
 
   private addMarkers(): void {
+    this.reset();
     // Define custom icon
     const customIcon = L.icon({
       iconUrl: 'leaflet/marker-icon.png', // Path to your custom icon
@@ -78,6 +79,19 @@ export class DriverComponent {
           .bindPopup(`<b>Coordinates:</b> ${latLng[0]}, ${latLng[1]}`);
       }
     });
+  }
+
+  reset() {
+    // Clear all markers and layers
+    this.map?.eachLayer((layer: any) => {
+      if (!(layer instanceof L.TileLayer)) {
+        this.map?.removeLayer(layer);
+      }
+    });
+  
+    const defaultCenter = [-20.1609, 57.5012];  
+    const defaultZoom = 13;               
+    this.map?.setView(defaultCenter, defaultZoom);
   }
 
 }

@@ -37,6 +37,7 @@ export class RentaltripTableComponent implements OnInit  {
   }
 
   async getAllRentalAndUserInfo(){
+    this.driversOptions = [];
     let userInfo = this.authService.getUserInfo();
     if(userInfo){
       this.adminId = userInfo.id;
@@ -72,12 +73,12 @@ export class RentaltripTableComponent implements OnInit  {
           driverId: driverId
         }
         let response = await this.apiService.addDriverToTrip(request);
-        await this.getAllRentalAndUserInfo();
         if(response.status == 200){
           this.customMessageService.showSuccess("Success");
         }else{
           this.customMessageService.showError(response.body as string);
         }
+        await this.getAllRentalAndUserInfo();
   
       }
      
@@ -93,10 +94,10 @@ export class RentaltripTableComponent implements OnInit  {
       let response = await this.apiService.updatePayment({paymentId: id, updatedBy: this.adminId});
       if(response.status == 200){
         this.customMessageService.showSuccess("Success");
-        await this.getAllRentalAndUserInfo();
       }else{
         this.customMessageService.showError(response.body as string)
       }
+      await this.getAllRentalAndUserInfo();
     } catch (error) {
       this.customMessageService.showError("Error");
     }
